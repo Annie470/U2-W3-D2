@@ -2,15 +2,25 @@
 const h2 = document.querySelector("h2");
 
 //inizializzo timer
-let timer = 10;
+let timer = 60;
+
+//tempo trascorso
+let trascorso = sessionStorage.getItem("trascorso");
+trascorso = trascorso ? parseInt(trascorso) : 0;
+
+//rimanente
+let rimasto = timer - trascorso;
 
 //setInterval per far diminuire il timer di 1s
 const anx = setInterval(() => {
-  h2.innerText = timer;
+  h2.innerText = rimasto;
 
-  if (timer <= 0) {
+  if (rimasto <= 0) {
     clearInterval(anx);
+    sessionStorage.removeItem("trascorso");
+  } else {
+    trascorso++;
+    sessionStorage.setItem("trascorso", trascorso);
+    rimasto--;
   }
-
-  timer--;
 }, 1000);
