@@ -14,7 +14,7 @@ const h4 = document.createElement("h4");
 h4.classList.add("my-3");
 form.appendChild(h4);
 if (user !== null) {
-  h4.innerText = `${user}`;
+  h4.innerText = `User logged: ${user}`;
 } else {
   h4.innerText = `No logged user`;
 }
@@ -22,7 +22,8 @@ if (user !== null) {
 //salvo la value dell input nel local storage con bottone save
 bSave.addEventListener("click", () => {
   localStorage.setItem(key, input.value);
-  h4.innerText = `${input.value}`;
+  user = getValue();
+  h4.innerText = `User logged: ${user}`;
   form.reset();
 });
 
